@@ -11,3 +11,9 @@ export const isNotDecimalNumber = (str: string): boolean => {
         return true;
     return false;
 }
+
+export const hasMoreThanTwoDecimals = (str: string): boolean => {
+    if (str.split('.').length === 2 && str.split('.')[1].length > 2)
+        return true;
+    return false;
+}
