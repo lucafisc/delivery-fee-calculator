@@ -8,17 +8,18 @@ import {
   hasMoreThanTwoDecimals,
 } from "./functions/InputValidation";
 import { getFee } from "./functions/FeeCalculator";
-import FeeCard from "./components/FeeCard";
+import TotalFee from "./components/TotalFee";
 import PrimaryButton from "./components/PrimaryButton";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import AppTitle from "./components/AppTitle";
 
 function App() {
   const [cartValue, setCartValue] = useState("");
   const [deliveryDistance, setDeliveryDistance] = useState("");
   const [numberOfItems, setNumberOfItems] = useState("");
   const [deliveryFee, setDeliveryFee] = useState(-1);
-  const [orderTime, setOrderTime] = useState(null);
+  const [orderTime, setOrderTime] = useState<Date | null>(null);
 
   const handleIntegerInput = (
     newValue: string,
@@ -60,7 +61,7 @@ function App() {
     )
       return;
 
-    const fee = getFee(cartValueFloat, deliveryDistanceInt, numberOfItemsInt);
+    const fee = getFee(cartValueFloat, deliveryDistanceInt, numberOfItemsInt, orderTime);
     setDeliveryFee(fee);
   };
 
@@ -69,21 +70,12 @@ function App() {
   }, [cartValue, deliveryDistance, numberOfItems, orderTime]);
 
   return (
-    <div className="bg-black text-white rounded-3xl w-full max-w-3xl mx-auto shadow-md p-8">
-      <div className="flex justify-end cursor-default">
-        <h1
-          data-test-id="appTitle"
-          className="text-2xl flex flex-col"
-        >
-          <span>Delivery</span>
-          <span>Fee</span>
-          <span>Calculator</span>
-        </h1>
-      </div>
+    <div className="bg-slate-900 text-white rounded-3xl w-full max-w-4xl mx-auto shadow-md p-8">
+     <AppTitle />
       <form
         data-test-id="form"
         onSubmit={handleSubmit}
-        className="flex flex-col mt-8 w-full sm:w-3/4"
+        className="flex flex-col gap-6 mt-8 w-full sm:w-3/4"
       >
         <NumberInput
           testId="cartValue"
@@ -113,7 +105,7 @@ function App() {
         />
 
         <fieldset
-        className="mt-8 flex flex-col">
+        className="flex flex-col pr-12">
             <label htmlFor="orderDateTime">Order Time</label>
             <DatePicker
               id="orderDateTime"
@@ -126,16 +118,13 @@ function App() {
               dateFormat="dd.MM.yyyy HH:mm"
               closeOnScroll={true}
               tabIndex={4}
-              
               customInput={<input data-test-id="orderTime" type="text" />}
-              // data-test-id="orderTime"
-              className="w-10/12 rounded-full text-black font-bold p-2 px-6 mt-2 hover:bg-orange-200 transition-all text-right"
+              className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-20"
             />
         </fieldset>
-
         <PrimaryButton type="submit" label="Calculate" tabIndex={5} />
       </form>
-      <FeeCard deliveryFee={deliveryFee} />
+      <TotalFee deliveryFee={deliveryFee} />
     </div>
   );
 }
