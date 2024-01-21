@@ -54,13 +54,13 @@ export default function TotalFee({ deliveryFee }: Props) {
               Copied!
             </div>
           )}
-          <button
+          {deliveryFee !== -1 && <button
             onClick={handleCopyToClipboard}
             className="cursor-pointer pr-2 aspect-square active:scale-95 transition-all opacity-60 hover:opacity-100"
             tabIndex={6}
           >
             <FiCopy className="text-xl" />
-          </button>
+          </button>}
           <h1
             data-test-id="fee"
             id="feeContainer"
