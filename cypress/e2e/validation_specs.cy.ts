@@ -78,3 +78,16 @@ describe("Cart Value Input Validation Tests", () => {
         .should("have.value", "90");
     });
   });
+
+  describe("Order Time Input Validation Tests", () => {
+    beforeEach(() => {
+      cy.visit("http://localhost:5173/");
+    });
+
+    it("allows only numbers in the order time", () => {
+      cy.get('[data-test-id="orderTime"]')
+      .type("22.09.19a92 12:24{enter}")
+      .should("have.value", "22.09.2019 00:00");
+    })
+
+  })

@@ -18,7 +18,7 @@ function App() {
   const [deliveryDistance, setDeliveryDistance] = useState("");
   const [numberOfItems, setNumberOfItems] = useState("");
   const [deliveryFee, setDeliveryFee] = useState(-1);
-  const [orderTime, setOrderTime] = useState(new Date());
+  const [orderTime, setOrderTime] = useState(null);
 
   const handleIntegerInput = (
     newValue: string,
@@ -49,11 +49,14 @@ function App() {
     const cartValueFloat = parseFloat(cartValue);
     const deliveryDistanceInt = parseInt(deliveryDistance);
     const numberOfItemsInt = parseInt(numberOfItems);
+    //check if oderTime is a valid date
 
     if (
       isNaN(cartValueFloat) ||
       isNaN(deliveryDistanceInt) ||
-      isNaN(numberOfItemsInt)
+      isNaN(numberOfItemsInt) ||
+      !orderTime ||
+      isNaN(new Date(orderTime).getTime()) 
     )
       return;
 
@@ -63,7 +66,7 @@ function App() {
 
   useEffect(() => {
     setDeliveryFee(-1);
-  }, [cartValue, deliveryDistance, numberOfItems]);
+  }, [cartValue, deliveryDistance, numberOfItems, orderTime]);
 
   return (
     <div className="bg-black text-white rounded-3xl w-full max-w-3xl mx-auto shadow-md p-8">
@@ -118,10 +121,12 @@ function App() {
               onChange={(date: Date) => setOrderTime(date)}
               showTimeSelect
               timeFormat="HH:mm"
-              timeIntervals={1}
+              timeIntervals={15}
               timeCaption="Time"
               dateFormat="dd.MM.yyyy HH:mm"
+              closeOnScroll={true}
               tabIndex={4}
+              
               customInput={<input data-test-id="orderTime" type="text" />}
               // data-test-id="orderTime"
               className="w-10/12 rounded-full text-black font-bold p-2 px-6 mt-2 hover:bg-orange-200 transition-all text-right"
