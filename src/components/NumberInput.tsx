@@ -21,8 +21,8 @@ export default function NumberInput({
   changeHandle,
 }: Props) {
   return (
-    <fieldset className="mt-8 flex flex-col ">
-      <label className="font-light" htmlFor={label}>
+    <fieldset className="mt-8 flex flex-col">
+      <label  htmlFor={label}>
         {label}
       </label>
       <div className="flex items-center">

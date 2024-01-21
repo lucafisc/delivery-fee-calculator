@@ -10,12 +10,15 @@ import {
 import { getFee } from "./functions/FeeCalculator";
 import FeeCard from "./components/FeeCard";
 import PrimaryButton from "./components/PrimaryButton";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   const [cartValue, setCartValue] = useState("");
   const [deliveryDistance, setDeliveryDistance] = useState("");
   const [numberOfItems, setNumberOfItems] = useState("");
   const [deliveryFee, setDeliveryFee] = useState(-1);
+  const [orderTime, setOrderTime] = useState(new Date());
 
   const handleIntegerInput = (
     newValue: string,
@@ -62,13 +65,13 @@ function App() {
     setDeliveryFee(-1);
   }, [cartValue, deliveryDistance, numberOfItems]);
 
-
-
-
   return (
     <div className="bg-black text-white rounded-3xl w-full max-w-3xl mx-auto shadow-md p-8">
       <div className="flex justify-end cursor-default">
-        <h1 data-test-id="appTitle" className="font-light text-2xl flex flex-col">
+        <h1
+          data-test-id="appTitle"
+          className="text-2xl flex flex-col"
+        >
           <span>Delivery</span>
           <span>Fee</span>
           <span>Calculator</span>
@@ -105,9 +108,29 @@ function App() {
           setValue={setNumberOfItems}
           changeHandle={handleIntegerInput}
         />
-        <PrimaryButton type="submit" label="Calculate" tabIndex={4}/>
+
+        <fieldset
+        className="mt-8 flex flex-col">
+            <label htmlFor="orderDateTime">Order Time</label>
+            <DatePicker
+              id="orderDateTime"
+              selected={orderTime}
+              onChange={(date: Date) => setOrderTime(date)}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={1}
+              timeCaption="Time"
+              dateFormat="dd.MM.yyyy HH:mm"
+              tabIndex={4}
+              customInput={<input data-test-id="orderTime" type="text" />}
+              // data-test-id="orderTime"
+              className="w-10/12 rounded-full text-black font-bold p-2 px-6 mt-2 hover:bg-orange-200 transition-all text-right"
+            />
+        </fieldset>
+
+        <PrimaryButton type="submit" label="Calculate" tabIndex={5} />
       </form>
-    <FeeCard deliveryFee={deliveryFee} />
+      <FeeCard deliveryFee={deliveryFee} />
     </div>
   );
 }

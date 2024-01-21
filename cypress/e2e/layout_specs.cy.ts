@@ -17,7 +17,7 @@ describe("App Load and Layout Tests", () => {
     cy.get('[data-test-id="cartValue"]').should("exist");
     cy.get('[data-test-id="deliveryDistance"]').should("exist");
     cy.get('[data-test-id="numberOfItems"]').should("exist");
-    // cy.get('[data-test-id="orderTime"]').should("exist");
+    cy.get('[data-test-id="orderTime"]').should("exist");
   });
 });
 
