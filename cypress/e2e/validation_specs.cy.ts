@@ -1,3 +1,5 @@
+import { submitFormWithValues, checkFee } from "./testUtils";
+
 describe("Cart Value Input Validation Tests", () => {
     beforeEach(() => {
       cy.visit("http://localhost:5173/");
@@ -89,5 +91,43 @@ describe("Cart Value Input Validation Tests", () => {
       .type("22.09.19a92 12:24{enter}")
       .should("have.value", "22.09.2019 00:00");
     })
+  });
 
-  })
+  describe("Result reset", () => {
+    beforeEach(() => {
+      cy.visit("http://localhost:5173/");
+      submitFormWithValues("10", "1000", "14", "25.01.2024 18:59");
+    });
+
+    it("resets the result when the cart value is changed", () => {
+      cy.get('[data-test-id="cartValue"]')
+        .clear()
+        .type("100")
+        .should("have.value", "100");
+      checkFee("--");
+    });
+
+    it("resets the result when the delivery distance is changed", () => {
+      cy.get('[data-test-id="deliveryDistance"]')
+        .clear()
+        .type("100")
+        .should("have.value", "100");
+      checkFee("--");
+    });
+
+    it("resets the result when the number of items is changed", () => {
+      cy.get('[data-test-id="numberOfItems"]')
+        .clear()
+        .type("100")
+        .should("have.value", "100");
+      checkFee("--");
+    });
+
+    it("resets the result when the order time is changed", () => {
+      cy.get('[data-test-id="orderTime"]')
+        .clear()
+        .type("25.01.2024 19:00{enter}")
+        .should("have.value", "25.01.2024 19:00");
+      checkFee("--");
+    });
+});
