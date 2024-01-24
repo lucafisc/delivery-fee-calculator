@@ -3,6 +3,7 @@ import React from 'react'
 interface Props {
   testId: string
   label: string
+  hint: string
   decoration?: string
   value: string
   setValue: React.Dispatch<React.SetStateAction<string>>
@@ -15,20 +16,25 @@ interface Props {
 export default function NumberInput ({
   testId,
   label,
+  hint,
   decoration,
   value,
   setValue,
   changeHandle
 }: Props): JSX.Element {
+  const hintId = `${label}-hint`
+
   return (
-    <fieldset className="flex flex-col">
+    <div className="flex flex-col">
       <label htmlFor={label}>
         {label}
+        <span aria-hidden={true}> *</span>
       </label>
       <div className="flex items-center">
         <input
           id={label}
           data-test-id={testId}
+          aria-describedby={hintId}
           type="text"
           value={value}
           onChange={(event) => { changeHandle(event.target.value, setValue) }}
@@ -38,6 +44,7 @@ export default function NumberInput ({
           {decoration}
         </span>
       </div>
-    </fieldset>
+      <span className='italic text-gray-400' id={hintId}>{hint}</span>
+    </div>
   )
 }

@@ -78,6 +78,7 @@ function App (): JSX.Element {
         <NumberInput
           testId="cartValue"
           label={'Cart value'}
+          hint="Must be a value in euros (€)."
           decoration={'€'}
           value={cartValue}
           setValue={setCartValue}
@@ -86,6 +87,7 @@ function App (): JSX.Element {
         <NumberInput
           testId="deliveryDistance"
           label={'Delivery distance'}
+          hint="Must be a distance in meters (m) with no decimals."
           decoration={'m'}
           value={deliveryDistance}
           setValue={setDeliveryDistance}
@@ -94,14 +96,18 @@ function App (): JSX.Element {
         <NumberInput
           testId="numberOfItems"
           label={'Number of items'}
+          hint="Must be a whole number."
           value={numberOfItems}
           setValue={setNumberOfItems}
           changeHandle={handleIntegerInput}
         />
 
-        <fieldset
+        <div
         className="flex flex-col pr-12">
-            <label htmlFor="orderDateTime">Order Time</label>
+            <label htmlFor="orderDateTime">
+              Order Time
+              <span aria-hidden={true}> *</span>
+            </label>
             <DatePicker
               id="orderDateTime"
               selected={orderTime}
@@ -112,10 +118,11 @@ function App (): JSX.Element {
               timeCaption="Time"
               dateFormat="dd.MM.yyyy HH:mm"
               closeOnScroll={true}
-              customInput={<input data-test-id="orderTime" type="text" />}
+              customInput={<input data-test-id="orderTime" aria-describedby="DateHint" type="text" />}
               className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-20"
             />
-        </fieldset>
+            <span className='italic text-gray-400' id="DateHint">Must be a date in the DD.MM.YYYY HH:MM format.</span>
+        </div>
         <PrimaryButton type="submit" label="Calculate"/>
       </form>
       <TotalFee deliveryFee={deliveryFee} />
