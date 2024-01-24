@@ -5,15 +5,15 @@ interface Props {
   label: string
   hint: string
   decoration?: string
-  value: string
-  setValue: React.Dispatch<React.SetStateAction<string>>
+  value: number
+  setValue: React.Dispatch<React.SetStateAction<number>>
   changeHandle: (
     newValue: string,
-    setValue: React.Dispatch<React.SetStateAction<string>>
+    setValue: React.Dispatch<React.SetStateAction<number>>
   ) => void
 }
 
-export default function NumberInput ({
+export default function NumberInput({
   testId,
   label,
   hint,
@@ -35,7 +35,9 @@ export default function NumberInput ({
           id={label}
           data-test-id={testId}
           aria-describedby={hintId}
-          type="text"
+          type="number"
+          min="0"
+          step="any"
           value={value}
           onChange={(event) => { changeHandle(event.target.value, setValue) }}
           className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-20 hover:cursor-select"
