@@ -113,7 +113,7 @@ describe("Successful simple result scenarios", () => {
     checkFee("8.20");
   });
 
-  it('renders the fee with the rush hour if the order time is friday between 3 and 7 PM', () => {
+  it("renders the fee with the rush hour if the order time is friday between 3 and 7 PM", () => {
     submitFormWithValues("10", "1000", "12", "26.01.2024 15:00");
     checkFee("7.20");
     clearForm();
@@ -128,6 +128,7 @@ describe("Successful simple result scenarios", () => {
 
     submitFormWithValues("10", "1000", "14", "26.01.2024 19:00");
     checkFee("8.20");
+    clearForm();
 
     submitFormWithValues("10", "1000", "14", "25.01.2024 18:59");
     checkFee("8.20");
@@ -158,6 +159,4 @@ describe("Successful simple result scenarios", () => {
     submitFormWithValues("200.01", "10", "9000", "21.01.2024 13:50");
     checkFee("0");
   });
-
-
 });
