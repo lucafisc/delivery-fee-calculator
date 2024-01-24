@@ -1,73 +1,71 @@
-import { useEffect, useState } from "react";
-import NumberInput from "./components/NumberInput";
-import "./App.css";
+import React, { useEffect, useState } from 'react'
+import NumberInput from './components/NumberInput'
+import './App.css'
 import {
   hasSpaces,
   isNotNumber,
   isNotDecimalNumber,
-  hasMoreThanTwoDecimals,
-} from "./functions/InputValidation";
-import { getFee } from "./functions/FeeCalculator";
-import TotalFee from "./components/TotalFee";
-import PrimaryButton from "./components/PrimaryButton";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import AppTitle from "./components/AppTitle";
+  hasMoreThanTwoDecimals
+} from './functions/InputValidation'
+import { getFee } from './functions/FeeCalculator'
+import TotalFee from './components/TotalFee'
+import PrimaryButton from './components/PrimaryButton'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import AppTitle from './components/AppTitle'
 
-function App() {
-  const [cartValue, setCartValue] = useState("");
-  const [deliveryDistance, setDeliveryDistance] = useState("");
-  const [numberOfItems, setNumberOfItems] = useState("");
-  const [deliveryFee, setDeliveryFee] = useState(-1);
-  const [orderTime, setOrderTime] = useState<Date | null>(null);
+function App (): JSX.Element {
+  const [cartValue, setCartValue] = useState('')
+  const [deliveryDistance, setDeliveryDistance] = useState('')
+  const [numberOfItems, setNumberOfItems] = useState('')
+  const [deliveryFee, setDeliveryFee] = useState(-1)
+  const [orderTime, setOrderTime] = useState<Date | null>(null)
 
   const handleIntegerInput = (
     newValue: string,
     setValue: React.Dispatch<React.SetStateAction<string>>
-  ) => {
-    if (isNotNumber(newValue)) return;
-    if (hasSpaces(newValue)) return;
-    if (newValue[0] === "0") return;
+  ): void => {
+    if (isNotNumber(newValue)) return
+    if (hasSpaces(newValue)) return
+    if (newValue[0] === '0') return
 
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   const handleFloatInput = (
     newValue: string,
     setValue: React.Dispatch<React.SetStateAction<string>>
-  ) => {
-    if (isNotDecimalNumber(newValue)) return;
-    if (hasMoreThanTwoDecimals(newValue)) return;
-    if (hasSpaces(newValue)) return;
-    if (newValue[0] === "0" && newValue[1] && newValue[1] !== ".") return;
+  ): void => {
+    if (isNotDecimalNumber(newValue)) return
+    if (hasMoreThanTwoDecimals(newValue)) return
+    if (hasSpaces(newValue)) return
+    if (newValue[0] === '0' && (newValue[1] !== '') && newValue[1] !== '.') return
 
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault()
 
-    const cartValueFloat = parseFloat(cartValue);
-    const deliveryDistanceInt = parseInt(deliveryDistance);
-    const numberOfItemsInt = parseInt(numberOfItems);
-    //check if oderTime is a valid date
+    const cartValueFloat = parseFloat(cartValue)
+    const deliveryDistanceInt = parseInt(deliveryDistance)
+    const numberOfItemsInt = parseInt(numberOfItems)
 
     if (
       isNaN(cartValueFloat) ||
       isNaN(deliveryDistanceInt) ||
       isNaN(numberOfItemsInt) ||
-      !orderTime ||
-      isNaN(new Date(orderTime).getTime()) 
-    )
-      return;
+      (orderTime == null) ||
+      isNaN(new Date(orderTime).getTime())
+    ) { return }
 
-    const fee = getFee(cartValueFloat, deliveryDistanceInt, numberOfItemsInt, orderTime);
-    setDeliveryFee(fee);
-  };
+    const fee = getFee(cartValueFloat, deliveryDistanceInt, numberOfItemsInt, orderTime)
+    setDeliveryFee(fee)
+  }
 
   useEffect(() => {
-    setDeliveryFee(-1);
-  }, [cartValue, deliveryDistance, numberOfItems, orderTime]);
+    setDeliveryFee(-1)
+  }, [cartValue, deliveryDistance, numberOfItems, orderTime])
 
   return (
     <div className="bg-slate-900 text-white rounded-3xl w-full max-w-4xl mx-auto shadow-md p-8">
@@ -79,26 +77,23 @@ function App() {
       >
         <NumberInput
           testId="cartValue"
-          label={"Cart value"}
-          decoration={"€"}
-          tabIndex={1}
+          label={'Cart value'}
+          decoration={'€'}
           value={cartValue}
           setValue={setCartValue}
           changeHandle={handleFloatInput}
         />
         <NumberInput
           testId="deliveryDistance"
-          label={"Delivery distance"}
-          decoration={"m"}
-          tabIndex={2}
+          label={'Delivery distance'}
+          decoration={'m'}
           value={deliveryDistance}
           setValue={setDeliveryDistance}
           changeHandle={handleIntegerInput}
         />
         <NumberInput
           testId="numberOfItems"
-          label={"Number of items"}
-          tabIndex={3}
+          label={'Number of items'}
           value={numberOfItems}
           setValue={setNumberOfItems}
           changeHandle={handleIntegerInput}
@@ -110,23 +105,22 @@ function App() {
             <DatePicker
               id="orderDateTime"
               selected={orderTime}
-              onChange={(date: Date) => setOrderTime(date)}
+              onChange={(date: Date) => { setOrderTime(date) }}
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={15}
               timeCaption="Time"
               dateFormat="dd.MM.yyyy HH:mm"
               closeOnScroll={true}
-              tabIndex={4}
               customInput={<input data-test-id="orderTime" type="text" />}
               className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-20"
             />
         </fieldset>
-        <PrimaryButton type="submit" label="Calculate" tabIndex={5} />
+        <PrimaryButton type="submit" label="Calculate"/>
       </form>
       <TotalFee deliveryFee={deliveryFee} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,48 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { FiCopy } from "react-icons/fi";
+import React, { useEffect, useState } from 'react'
+import { FiCopy } from 'react-icons/fi'
 
-type Props = {
-  deliveryFee: number;
-};
+interface Props {
+  deliveryFee: number
+}
 
-export default function TotalFee({ deliveryFee }: Props) {
-  const [copied, setCopied] = useState(false);
+export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    const feeContainer = document.getElementById("feeContainer");
+    const feeContainer = document.getElementById('feeContainer')
 
-    if (feeContainer) {
-      feeContainer.classList.add("fee-animation");
+    if (feeContainer != null) {
+      feeContainer.classList.add('fee-animation')
 
       setTimeout(() => {
-        feeContainer.classList.remove("fee-animation");
-      }, 500);
+        feeContainer.classList.remove('fee-animation')
+      }, 500)
     }
-  }, [deliveryFee]);
+  }, [deliveryFee])
 
-  function formatCurrency(value: number): string {
+  function formatCurrency (value: number): string {
     if (value === -1) {
-      return "--";
+      return '--'
     }
 
-    const isDecimal = value % 1 !== 0;
-    const formattedValue = isDecimal ? value.toFixed(2) : value.toString();
-    return `${formattedValue}€`;
+    const isDecimal = value % 1 !== 0
+    const formattedValue = isDecimal ? value.toFixed(2) : value.toString()
+    return `${formattedValue}€`
   }
 
-  const handleCopyToClipboard = () => {
-    const feeContainer = document.getElementById("feeContainer");
+  const handleCopyToClipboard = (): void => {
+    const feeContainer = document.getElementById('feeContainer')
 
-    if (feeContainer) {
-      const feeText = formatCurrency(deliveryFee);
-      navigator.clipboard.writeText(feeText);
-      setCopied(true);
+    if (feeContainer != null) {
+      const feeText = formatCurrency(deliveryFee)
+      void navigator.clipboard.writeText(feeText)
+      setCopied(true)
 
       setTimeout(() => {
-        setCopied(false);
-      }, 2000);
+        setCopied(false)
+      }, 2000)
     }
-  };
+  }
 
   return (
     <div>
@@ -57,7 +57,6 @@ export default function TotalFee({ deliveryFee }: Props) {
           {deliveryFee !== -1 && <button
             onClick={handleCopyToClipboard}
             className="cursor-pointer pr-2 aspect-square active:scale-95 transition-all opacity-60 hover:opacity-100"
-            tabIndex={6}
           >
             <FiCopy className="text-xl" />
           </button>}
@@ -71,5 +70,5 @@ export default function TotalFee({ deliveryFee }: Props) {
         </div>
       </div>
     </div>
-  );
+  )
 }

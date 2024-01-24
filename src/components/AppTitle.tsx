@@ -1,4 +1,6 @@
-export default function AppTitle() {
+import React from 'react'
+
+export default function AppTitle (): JSX.Element {
   return (
     <div className="flex justify-end cursor-default">
       <h1 data-test-id="appTitle" className="text-2xl flex flex-col">
@@ -7,5 +9,5 @@ export default function AppTitle() {
         <span>Calculator</span>
       </h1>
     </div>
-  );
+  )
 }
