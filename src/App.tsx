@@ -10,9 +10,9 @@ import {
 import { getFee } from './functions/FeeCalculator'
 import TotalFee from './components/TotalFee'
 import PrimaryButton from './components/PrimaryButton'
-import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import AppTitle from './components/AppTitle'
+import DateInput from './components/DateInput'
 
 function App (): JSX.Element {
   const [cartValue, setCartValue] = useState('')
@@ -78,7 +78,7 @@ function App (): JSX.Element {
 
   return (
     <div className="bg-slate-900 text-white rounded-3xl w-full max-w-4xl mx-auto shadow-md py-6 px-8">
-     <AppTitle />
+      <AppTitle />
       <form
         data-test-id="form"
         onSubmit={handleSubmit}
@@ -112,29 +112,36 @@ function App (): JSX.Element {
           changeHandle={handleIntegerInput}
         />
 
-        <div
-        className="flex flex-col sm:pr-12">
-            <label htmlFor="orderDateTime">
-              Order Time
-              <span aria-hidden={true}> *</span>
-            </label>
-            <DatePicker
-              id="orderDateTime"
-              selected={orderTime}
-              onChange={(date: Date) => { setOrderTime(date) }}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              timeCaption="Time"
-              dateFormat="dd.MM.yyyy HH:mm"
-              closeOnScroll={true}
-              required
-              customInput={<input data-test-id="orderTime" aria-describedby="DateHint" type="text" />}
-              className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-16"
-            />
-            <span className='italic text-gray-400' id="DateHint">Must be a date in the DD.MM.YYYY HH:MM format.</span>
-        </div>
-        <PrimaryButton type="submit" label="Calculate"/>
+        <DateInput
+          testId="orderTime"
+          label="Order Time"
+          hint="Must be a date in the DD.MM.YYYY HH:MM format."
+          value={orderTime}
+          setValue={setOrderTime}
+        />
+        {/* <div
+          className="flex flex-col sm:pr-12">
+          <label htmlFor="orderDateTime">
+            Order Time
+            <span aria-hidden={true}> *</span>
+          </label>
+          <DatePicker
+            id="orderDateTime"
+            selected={orderTime}
+            onChange={(date: Date) => { setOrderTime(date) }}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            timeCaption="Time"
+            dateFormat="dd.MM.yyyy HH:mm"
+            closeOnScroll={true}
+            required
+            customInput={<input data-test-id="orderTime" aria-describedby="DateHint" type="text" />}
+            className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-16"
+          />
+          <span className='italic text-gray-400' id="DateHint">Must be a date in the DD.MM.YYYY HH:MM format.</span>
+        </div> */}
+        <PrimaryButton type="submit" label="Calculate" />
       </form>
       <TotalFee deliveryFee={deliveryFee} />
     </div>
