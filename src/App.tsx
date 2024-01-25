@@ -17,8 +17,8 @@ function App (): JSX.Element {
   const [cartValue, setCartValue] = useState('')
   const [deliveryDistance, setDeliveryDistance] = useState('')
   const [numberOfItems, setNumberOfItems] = useState('')
-  const [deliveryFee, setDeliveryFee] = useState(-1)
   const [orderTime, setOrderTime] = useState<Date | null>(null)
+  const [deliveryFee, setDeliveryFee] = useState(-1)
 
   const handleIntegerInput = (
     newValue: string,
