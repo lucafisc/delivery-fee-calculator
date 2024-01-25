@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import NumberInput from './components/NumberInput'
 import './App.css'
+import AppTitle from './components/AppTitle'
+import NumberInput from './components/NumberInput'
+import DateInput from './components/DateInput'
+import PrimaryButton from './components/PrimaryButton'
+import TotalFee from './components/TotalFee'
 import {
   hasSpaces,
   isNotNumber,
@@ -8,11 +12,6 @@ import {
   hasMoreThanTwoDecimals
 } from './functions/InputValidation'
 import { getFee } from './functions/FeeCalculator'
-import TotalFee from './components/TotalFee'
-import PrimaryButton from './components/PrimaryButton'
-import 'react-datepicker/dist/react-datepicker.css'
-import AppTitle from './components/AppTitle'
-import DateInput from './components/DateInput'
 
 function App (): JSX.Element {
   const [cartValue, setCartValue] = useState('')
@@ -119,28 +118,7 @@ function App (): JSX.Element {
           value={orderTime}
           setValue={setOrderTime}
         />
-        {/* <div
-          className="flex flex-col sm:pr-12">
-          <label htmlFor="orderDateTime">
-            Order Time
-            <span aria-hidden={true}> *</span>
-          </label>
-          <DatePicker
-            id="orderDateTime"
-            selected={orderTime}
-            onChange={(date: Date) => { setOrderTime(date) }}
-            showTimeSelect
-            timeFormat="HH:mm"
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="dd.MM.yyyy HH:mm"
-            closeOnScroll={true}
-            required
-            customInput={<input data-test-id="orderTime" aria-describedby="DateHint" type="text" />}
-            className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-16"
-          />
-          <span className='italic text-gray-400' id="DateHint">Must be a date in the DD.MM.YYYY HH:MM format.</span>
-        </div> */}
+
         <PrimaryButton type="submit" label="Calculate" />
       </form>
       <TotalFee deliveryFee={deliveryFee} />
