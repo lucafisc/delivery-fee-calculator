@@ -44,9 +44,12 @@ export default function NumberInput ({
           onChange={(event) => { changeHandle(event.target.value, setValue) }}
           onBlur={blurHandle}
 
-          className="w-full border border-white rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-20 hover:cursor-select"
+          className="w-full border border-white rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-16 hover:cursor-select"
         ></input>
-        <span className="pl-4 pt-2 text-3xl font-bold w-12" aria-hidden="true">
+        <span
+          className={`pl-4 pt-2 text-3xl font-bold w-12 ${decoration === undefined ? 'hidden' : ''} sm:block`}
+          aria-hidden="true"
+        >
           {decoration}
         </span>
       </div>

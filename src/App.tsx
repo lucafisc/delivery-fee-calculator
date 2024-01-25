@@ -113,7 +113,7 @@ function App (): JSX.Element {
         />
 
         <div
-        className="flex flex-col pr-12">
+        className="flex flex-col sm:pr-12">
             <label htmlFor="orderDateTime">
               Order Time
               <span aria-hidden={true}> *</span>
@@ -130,7 +130,7 @@ function App (): JSX.Element {
               closeOnScroll={true}
               required
               customInput={<input data-test-id="orderTime" aria-describedby="DateHint" type="text" />}
-              className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-20"
+              className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-16"
             />
             <span className='italic text-gray-400' id="DateHint">Must be a date in the DD.MM.YYYY HH:MM format.</span>
         </div>
