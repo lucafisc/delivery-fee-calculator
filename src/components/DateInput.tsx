@@ -40,7 +40,7 @@ export default function DateInput (
         dateFormat="dd.MM.yyyy HH:mm"
         closeOnScroll={true}
         customInput={<input data-test-id={testId} aria-describedby={hintId} type="text" />}
-        className="w-full border border-white rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-16 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+        className="w-full h-16 p-2 px-6 mt-2 text-3xl font-bold text-right text-black text-white border border-white rounded-xl bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
       />
       <span className='italic text-gray-400' id={hintId}>{hint}</span>
     </div>
