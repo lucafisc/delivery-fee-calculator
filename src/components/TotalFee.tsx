@@ -45,8 +45,7 @@ export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
   }
 
   return (
-    <div>
-      <div className="flex justify-between mt-4 flex-col sm:flex-row gap-4 sm:items-center">
+      <div className="flex justify-between mt-4 flex-col gap-4 sm:flex-row sm:items-center">
         <h1 className="text-2xl ">Total fee:</h1>
         <div className="flex items-center justify-between bg-slate-800 p-4 rounded-xl relative">
           {copied && (
@@ -55,7 +54,7 @@ export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
             </div>
           )}
           {deliveryFee !== -1 && <button
-          aria-label='Copy to clipboard'
+            aria-label='Copy to clipboard'
             onClick={handleCopyToClipboard}
             className="cursor-pointer pr-2 aspect-square active:scale-95 transition-all opacity-60 hover:opacity-100"
           >
@@ -70,6 +69,5 @@ export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
           </h1>
         </div>
       </div>
-    </div>
   )
 }
