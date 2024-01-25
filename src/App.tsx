@@ -77,12 +77,12 @@ function App (): JSX.Element {
   }, [cartValue, deliveryDistance, numberOfItems, orderTime])
 
   return (
-    <div className="bg-slate-900 text-white rounded-3xl w-full max-w-4xl mx-auto shadow-md p-8">
+    <div className="bg-slate-900 text-white rounded-3xl w-full max-w-4xl mx-auto shadow-md py-6 px-8">
      <AppTitle />
       <form
         data-test-id="form"
         onSubmit={handleSubmit}
-        className="flex flex-col gap-6 mt-8 w-full sm:w-3/4"
+        className="flex flex-col gap-6 mt-4 w-full sm:w-3/4"
       >
         <NumberInput
           testId="cartValue"

@@ -46,7 +46,7 @@ export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
 
   return (
     <div>
-      <div className="flex justify-between mt-6 flex-col sm:flex-row gap-4 sm:items-center">
+      <div className="flex justify-between mt-4 flex-col sm:flex-row gap-4 sm:items-center">
         <h1 className="text-2xl ">Total fee:</h1>
         <div className="flex items-center justify-between bg-slate-800 p-4 rounded-xl relative">
           {copied && (
