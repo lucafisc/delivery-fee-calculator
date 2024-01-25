@@ -55,6 +55,7 @@ export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
             </div>
           )}
           {deliveryFee !== -1 && <button
+          aria-label='Copy to clipboard'
             onClick={handleCopyToClipboard}
             className="cursor-pointer pr-2 aspect-square active:scale-95 transition-all opacity-60 hover:opacity-100"
           >

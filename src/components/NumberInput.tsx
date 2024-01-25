@@ -11,6 +11,7 @@ interface Props {
     newValue: string,
     setValue: React.Dispatch<React.SetStateAction<string>>
   ) => void
+  blurHandle?: () => void
 }
 
 export default function NumberInput ({
@@ -20,13 +21,14 @@ export default function NumberInput ({
   decoration,
   value,
   setValue,
-  changeHandle
+  changeHandle,
+  blurHandle
 }: Props): JSX.Element {
   const hintId = `${label}-hint`
 
   return (
     <div className="flex flex-col">
-      <label htmlFor={label}>
+      <label className='font-bold' htmlFor={label}>
         {label}
         <span aria-hidden={true}> *</span>
       </label>
@@ -35,10 +37,14 @@ export default function NumberInput ({
           id={label}
           data-test-id={testId}
           aria-describedby={hintId}
+          required
           type="text"
+          inputMode="numeric"
           value={value}
           onChange={(event) => { changeHandle(event.target.value, setValue) }}
-          className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-20 hover:cursor-select"
+          onBlur={blurHandle}
+
+          className="w-full border border-white rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-20 hover:cursor-select"
         ></input>
         <span className="pl-4 pt-2 text-3xl font-bold w-12" aria-hidden="true">
           {decoration}

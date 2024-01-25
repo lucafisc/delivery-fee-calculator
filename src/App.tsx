@@ -39,9 +39,18 @@ function App (): JSX.Element {
     if (isNotDecimalNumber(newValue)) return
     if (hasMoreThanTwoDecimals(newValue)) return
     if (hasSpaces(newValue)) return
-    if (newValue[0] === '0' && (newValue[1] !== '') && newValue[1] !== '.') return
+    if (newValue[0] === '0' && newValue.length > 1 && newValue[1] !== '.') return
 
     setValue(newValue)
+  }
+
+  const handleFloatBlur = (): void => {
+    let newValue = cartValue
+
+    if (newValue[0] === '.') newValue = '0' + newValue
+    if (newValue[newValue.length - 2] === '.') newValue = newValue + '0'
+
+    setCartValue(newValue)
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -83,6 +92,7 @@ function App (): JSX.Element {
           value={cartValue}
           setValue={setCartValue}
           changeHandle={handleFloatInput}
+          blurHandle={handleFloatBlur}
         />
         <NumberInput
           testId="deliveryDistance"
@@ -118,6 +128,7 @@ function App (): JSX.Element {
               timeCaption="Time"
               dateFormat="dd.MM.yyyy HH:mm"
               closeOnScroll={true}
+              required
               customInput={<input data-test-id="orderTime" aria-describedby="DateHint" type="text" />}
               className="w-full rounded-xl text-black font-bold p-2 px-6 mt-2 text-right bg-slate-800 text-white text-3xl h-20"
             />
