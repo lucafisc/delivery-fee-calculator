@@ -86,7 +86,7 @@ function App (): JSX.Element {
         <NumberInput
           testId="cartValue"
           label={'Cart value'}
-          hint="Must be a value in euros (€)."
+          hint="Enter the total cart value in euros (€)."
           decoration={'€'}
           value={cartValue}
           setValue={setCartValue}
@@ -96,7 +96,7 @@ function App (): JSX.Element {
         <NumberInput
           testId="deliveryDistance"
           label={'Delivery distance'}
-          hint="Must be a distance in meters (m) with no decimals."
+          hint="Enter the delivery distance in meters (m), without decimals."
           decoration={'m'}
           value={deliveryDistance}
           setValue={setDeliveryDistance}
@@ -105,7 +105,7 @@ function App (): JSX.Element {
         <NumberInput
           testId="numberOfItems"
           label={'Number of items'}
-          hint="Must be a whole number."
+          hint="Enter the total number of items as a whole number."
           value={numberOfItems}
           setValue={setNumberOfItems}
           changeHandle={handleIntegerInput}
@@ -114,7 +114,7 @@ function App (): JSX.Element {
         <DateInput
           testId="orderTime"
           label="Order Time"
-          hint="Must be a date in the DD.MM.YYYY HH:MM format."
+          hint="Enter the order date and time in the format DD.MM.YYYY HH:MM."
           value={orderTime}
           setValue={setOrderTime}
         />

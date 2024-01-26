@@ -46,7 +46,7 @@ export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
 
   return (
       <div className="flex flex-col justify-between gap-4 mt-4 sm:flex-row sm:items-center">
-        <h1 className="text-2xl" id="totalFeeLabel">Total fee:</h1>
+        <p className="text-2xl" id="totalFeeLabel">Total fee:</p>
         <div className={`relative flex items-center p-4 ${deliveryFee === -1 ? 'bg-zinc-800 justify-end' : 'bg-emerald-800 justify-between'} rounded-xl transition-all duration-500`}>
           {copied && (
             <div className="absolute left-0 px-2 py-1 text-white bg-green-500 rounded fee-animation -top-10">
@@ -54,20 +54,20 @@ export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
             </div>
           )}
           {deliveryFee !== -1 && <button
-            aria-label='Copy to clipboard'
+            aria-label='Copy total fee to clipboard'
             onClick={handleCopyToClipboard}
             className="pr-2 transition-all cursor-pointer aspect-square active:scale-95 opacity-60 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
           >
             <FiCopy className="text-xl" />
           </button>}
-          <h1
+          <p
             data-test-id="fee"
             id="feeContainer"
             className="text-5xl font-bold"
             aria-live="polite"
           >
             {formatCurrency(deliveryFee)}
-          </h1>
+          </p>
         </div>
       </div>
   )
