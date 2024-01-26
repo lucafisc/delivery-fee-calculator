@@ -46,7 +46,7 @@ export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
 
   return (
       <div className="flex flex-col justify-between gap-4 mt-4 sm:flex-row sm:items-center">
-        <h1 className="text-2xl ">Total fee:</h1>
+        <h1 className="text-2xl" id="totalFeeLabel">Total fee:</h1>
         <div className={`relative flex items-center p-4 ${deliveryFee === -1 ? 'bg-zinc-800 justify-end' : 'bg-emerald-800 justify-between'} rounded-xl transition-all duration-500`}>
           {copied && (
             <div className="absolute left-0 px-2 py-1 text-white bg-green-500 rounded fee-animation -top-10">
@@ -64,6 +64,7 @@ export default function TotalFee ({ deliveryFee }: Props): JSX.Element {
             data-test-id="fee"
             id="feeContainer"
             className="text-5xl font-bold"
+            aria-live="polite"
           >
             {formatCurrency(deliveryFee)}
           </h1>
