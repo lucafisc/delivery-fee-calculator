@@ -48,6 +48,8 @@ function App (): JSX.Element {
 
     if (newValue[0] === '.') newValue = '0' + newValue
     if (newValue[newValue.length - 2] === '.') newValue = newValue + '0'
+    if (newValue[newValue.length - 1] === '.') newValue = newValue + '00'
+
 
     setCartValue(newValue)
   }
