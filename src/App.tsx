@@ -76,7 +76,7 @@ function App (): JSX.Element {
   }, [cartValue, deliveryDistance, numberOfItems, orderTime])
 
   return (
-    <div className="w-full max-w-4xl px-8 py-6 mx-auto text-white shadow-md bg-slate-900 rounded-3xl">
+    <div className="w-full max-w-4xl px-8 py-6 mx-auto text-white shadow-md bg-zinc-900 rounded-3xl">
       <AppTitle />
       <form
         data-test-id="form"

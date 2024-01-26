@@ -43,7 +43,7 @@ export default function NumberInput ({
           value={value}
           onChange={(event) => { changeHandle(event.target.value, setValue) }}
           onBlur={blurHandle}
-          className="w-full h-16 p-2 px-6 mt-2 text-3xl font-bold text-right text-black text-white border border-white rounded-xl bg-slate-800 hover:cursor-select focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+          className="w-full h-16 p-2 px-6 mt-2 text-3xl font-bold text-right text-black text-white border border-zinc-500 rounded-xl bg-zinc-800 hover:cursor-select focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
         ></input>
         <span
           className={`pl-4 pt-2 text-3xl font-bold w-12 ${decoration === undefined ? 'hidden' : ''} sm:block`}
