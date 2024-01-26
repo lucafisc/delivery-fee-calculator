@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function AppTitle (): JSX.Element {
   return (
     <div className="flex justify-end cursor-default">
