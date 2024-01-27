@@ -31,6 +31,7 @@ export default function DateInput(
         id={label}
         selected={value}
         onChange={(date: Date) => { setValue(date) }}
+        onFocus={e => e.target.blur()} 
         showTimeSelect
         required
         timeFormat="HH:mm"
@@ -41,7 +42,6 @@ export default function DateInput(
         customInput={
           <input
             data-test-id={testId} aria-describedby={hintId} type="text"
-            onFocus={e => e.target.blur()} 
           />}
         className="w-full h-16 p-2 px-6 mt-2 text-3xl font-bold text-right text-black text-white border border-zinc-500 rounded-xl bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent"
       />
