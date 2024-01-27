@@ -31,7 +31,7 @@ describe('Failed Result Scenarios', () => {
   })
 })
 
-describe('Successful simple result scenarios', () => {
+describe('Successful result scenarios', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5173/')
   })

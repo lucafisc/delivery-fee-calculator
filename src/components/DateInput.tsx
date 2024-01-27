@@ -31,7 +31,6 @@ export default function DateInput(
         id={label}
         selected={value}
         onChange={(date: Date) => { setValue(date) }}
-        onFocus={e => e.target.blur()} 
         showTimeSelect
         required
         timeFormat="HH:mm"
