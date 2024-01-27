@@ -19,8 +19,7 @@ export default function DateInput(
     setValue
   }: Props
 ): JSX.Element {
-  const [readOnly, setReadOnly] = useState(false);
-
+  const [readOnly, setReadOnly] = useState(false); //Workaround for mobile devices
   const hintId = `${testId}-hint`
 
   return (

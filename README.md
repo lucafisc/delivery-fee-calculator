@@ -60,5 +60,4 @@ This project is a delivery fee calculator built with React and TypeScript. It al
 ## Contact
 
 Luca Fischer  
-Phone: 0157 31035083  
 Email: fischer.ldr@gmail.com
